@@ -26,4 +26,14 @@ docker run -d --name <container-name> -p 127.0.0.1:8080:8080 <image-name>
 ```
 
 <!-- TODO -->
-## Technical Documentation
+## Routes
+
+```
+POST   /api/v1/register          --> todo-be/controllers.(*authController).Register
+POST   /api/v1/login             --> todo-be/controllers.(*authController).Login
+GET    /api/v1/notes             --> todo-be/controllers.(*noteController).GetNotes
+POST   /api/v1/notes             --> todo-be/controllers.(*noteController).CreateNote
+PATCH  /api/v1/notes/:id         --> todo-be/controllers.(*noteController).UpdateStatusNote
+PUT    /api/v1/notes/:id         --> todo-be/controllers.(*noteController).UpdateNote
+DELETE /api/v1/notes/:id         --> todo-be/controllers.(*noteController).DeleteNote
+```

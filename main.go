@@ -21,6 +21,7 @@ func main() {
 
 	database := lib.InitializeDatabase()
 	router := gin.Default()
+	router.Use(lib.InitializeCORS())
 
 	router.GET("/ping", func(c *gin.Context) {
 		c.JSON(200, gin.H{
