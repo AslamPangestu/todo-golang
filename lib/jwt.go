@@ -3,6 +3,7 @@ package lib
 import (
 	"errors"
 	"os"
+	"time"
 
 	"github.com/golang-jwt/jwt/v5"
 )
@@ -24,7 +25,10 @@ var SECRET_KEY = []byte(os.Getenv("SECRET_JWT"))
 func (s *initializeJWT) GenerateToken(userID string) (string, error) {
 	token := jwt.New(jwt.SigningMethodHS256)
 	claims := token.Claims.(jwt.MapClaims)
-	claims["user_id"] = userID
+	claims["aud"] = os.Getenv("FRONTEND_URL")
+	claims["iss"] = os.Getenv("BACKEND_URL")
+	claims["sub"] = userID
+	claims["exp"] = time.Now().Unix() + 60*3600
 
 	signedToken, err := token.SignedString(SECRET_KEY)
 
