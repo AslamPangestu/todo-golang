@@ -38,7 +38,7 @@ func (r *noteRepository) FindAll(query helper.Paginate, userID int) (helper.Pagi
 	var models []entities.Note
 	var pagination helper.PaginationResult
 
-	err := r.db.Scopes(helper.PaginationScope(query.Page, query.PageSize)).Find(&models).Where("user_id = ?", userID).Error
+	err := r.db.Order("id asc").Scopes(helper.PaginationScope(query.Page, query.PageSize)).Find(&models).Where("user_id = ?", userID).Error
 	if err != nil {
 		return pagination, err
 	}

@@ -34,7 +34,6 @@ func (s *noteService) GetNotes(userID int, query helper.Paginate) (helper.Pagina
 }
 
 func (s *noteService) AddNotes(userId int, payload []dtos.FormNoteRequest) (int64, error) {
-
 	count, err := s.repository.Count()
 	if err != nil {
 		return 0, err
