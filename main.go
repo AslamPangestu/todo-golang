@@ -4,6 +4,7 @@ import (
 	"log"
 	"os"
 	"todo-be/lib"
+	"todo-be/middlewares"
 	"todo-be/routes"
 
 	"github.com/gin-gonic/gin"
@@ -22,6 +23,7 @@ func main() {
 	database := lib.InitializeDatabase()
 	router := gin.Default()
 	router.Use(lib.InitializeCORS())
+	router.Use(middlewares.LoggerMiddleware())
 
 	router.GET("/ping", func(c *gin.Context) {
 		c.JSON(200, gin.H{
